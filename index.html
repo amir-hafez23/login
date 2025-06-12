@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login and Signup Form with Smooth Color Animation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazirmatn', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      direction: rtl;
+      background: #f0f2f5;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: background-color 1.2s ease;
+    }
+
+    .container.signup-active {
+      background: linear-gradient(135deg, #2271b1, #2d9cdb);
+      color: white;
+    }
+
+    .container.signup-active label,
+    .container.signup-active .submit-btn {
+      color: white;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .tabs button {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      color: #555;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tabs button.active {
+      color: #2271b1;
+      border-color: #2271b1;
+    }
+
+    form {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+      color: #333;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      transition: color 1.2s ease;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background-color 1.2s ease, color 1.2s ease;
+      color: #333;
+      background: white;
+    }
+
+    .container.signup-active .form-group input {
+      background: rgba(255 255 255 / 0.15);
+      border-color: white;
+      color: white;
+    }
+
+    .form-group input:focus {
+      border-color: #2271b1;
+      outline: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #2271b1;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .container.signup-active .submit-btn {
+      background-color: #165a96;
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: #165a96;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="formContainer">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+      <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <form id="loginForm" class="active">
+      <div class="form-group">
+        <label>Username or Email</label>
+        <input type="text" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" required />
+      </div>
+      <button class="submit-btn" type="submit">Login</button>
+    </form>
+
+    <form id="signupForm">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" required />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" required />
+      </div>
+      <button class="submit-btn" type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const container = document.getElementById('formContainer');
+
+    function switchTab(tab) {
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      if (tab === 'login') {
+        loginForm.classList.add('active');
+        signupForm.classList.remove('active');
+        tabBtns[0].classList.add('active');
+        container.classList.remove('signup-active');
+      } else {
+        signupForm.classList.add('active');
+        loginForm.classList.remove('active');
+        tabBtns[1].classList.add('active');
+        container.classList.add('signup-active');
+      }
+    }
+  </script>
+</body>
+</html>
