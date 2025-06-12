@@ -182,6 +182,14 @@
   </div>
 
   <script>
+    fetch('/api/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ username: 'amir', password: '1234' })
+})
+.then(res => res.json())
+.then(data => console.log(data));
+
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const tabBtns = document.querySelectorAll('.tab-btn');
